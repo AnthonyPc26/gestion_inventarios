@@ -1,12 +1,17 @@
 import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
+import proveedorRouter from './routes/proveedor.route';
+import categoriasRouter from './routes/categorias.route';
 
 const app: Application = express();
 
-app.get('/saludar',(req: Request, res: Response)=>{
-    res.json({nombre:'Diego Fernando', apellido: 'Pachas',direccion:"Cajamarquilla"});
-});
+
 
 app.use(morgan('dev'));
+app.use('/api/v1/proveedores',proveedorRouter)
+app.use('/api/v1/categorias',categoriasRouter)
 
 export default app;
+
+
+
