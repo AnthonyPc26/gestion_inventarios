@@ -1,10 +1,18 @@
 import { Request, Response } from 'express';
 import * as proveedorService from '../services/proveedor.service';
+import { Proveedor } from '../entities/proveedor';
+import { BaseResponse } from '../shared/base-response';
 
 export const insertarProveedor = async (req: Request, res: Response) => {
-    const proveedor = req.body;
-    const response = proveedorService.insertarProveedor(proveedor);
-    res.json(response);
+    try {
+        console.log('insertarProveedor')
+        console.log('req.body',req.body)
+        const proveedor: Partial<Proveedor> = req.body;
+        const newProveedor: Proveedor = await proveedorService.insertarProveedor(proveedor)
+        res.json(BaseResponse.success(newProveedor));
+    } catch (error) {
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const listarProveedor = async (req: Request, res: Response) => {
