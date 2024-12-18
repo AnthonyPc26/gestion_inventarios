@@ -38,14 +38,27 @@ export const obtenerCategoria = async (req: Request, res: Response) => {
 }
 
 export const actualizarCategoria = async (req: Request, res: Response) => {
-    const { idCategoria } = req.params;
-    const categoria = req.body;
-    const response = await categoriaService.actualizarCategoria(Number(idCategoria), categoria);
+    try {
+        const { idCategoria } = req.params;
+        const categoria = req.body;
+        const response = await categoriaService.actualizarCategoria(Number(idCategoria),categoria)
     res.json(response);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const darBajaCategoria = async (req: Request, res: Response) => {
-    const { idCategoria } = req.params;
-    const response = await categoriaService.darBajaCategoria(Number(idCategoria));
-    res.json(response);
-}
+    try {
+        const { idCategoria } = req.params;
+        const response = await categoriaService.darBajaCategoria(Number(idCategoria));
+        res.json({
+            response,
+            message: `La Categoría con ID ${idCategoria} ha sido eliminado.`
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
+};

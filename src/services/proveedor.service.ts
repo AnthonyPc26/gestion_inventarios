@@ -22,6 +22,6 @@ export const actualizarProveedor = (idProveedor: number, data: any) => {
     return {accion:`actualizarProveedor:${idProveedor}`};
 }
 
-export const darBajaProveedor = (idProveedor: number) => {
-    return {accion:`darBajaProveedor:${idProveedor}`};
+export const darBajaProveedor = async (idProveedor: number) => {
+    return repository.update(idProveedor, { estadoAuditoria: EstadoAuditoria.INACTIVO});
 }

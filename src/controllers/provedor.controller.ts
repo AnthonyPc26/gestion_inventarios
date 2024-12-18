@@ -38,14 +38,27 @@ export const obtenerProveedor = async (req: Request, res: Response) => {
 }
 
 export const actualizarProveedor = async (req: Request, res: Response) => {
-    const { idProveedor } = req.params;
-    const proveedor = req.body;
-    const response = proveedorService.actualizarProveedor(Number(idProveedor),proveedor)
+    try {
+        const { idProveedor } = req.params;
+        const proveedor = req.body;
+        const response = await proveedorService.actualizarProveedor(Number(idProveedor),proveedor)
     res.json(response);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const darBajaProveedor = async (req: Request, res: Response) => {
-    const { idProveedor } = req.params;
-    const response = proveedorService.darBajaProveedor(Number(idProveedor));
-    res.json(response);
-}
+    try {
+        const { idProveedor } = req.params;
+        const response = await proveedorService.darBajaProveedor(Number(idProveedor));
+        res.json({
+            response,
+            message: `El proveedor con ID ${idProveedor} ha sido eliminado.`
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
+};

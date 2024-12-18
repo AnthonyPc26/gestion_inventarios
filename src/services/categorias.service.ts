@@ -18,10 +18,10 @@ export const obtenerCategoria = async (idCategoria: number) => {
     return await repository.findOne({where: {estadoAuditoria: EstadoAuditoria.ACTIVO,idCategoria}})
 }
 
-export const actualizarCategoria = async (idCategoria: number, data: any) => {
-    return { accion: `actualizarCategoria:${idCategoria}` };
+export const actualizarCategoria = (idCategoria: number, data: any) => {
+    return {accion:`actualizarCategoria:${idCategoria}`};
 }
 
 export const darBajaCategoria = async (idCategoria: number) => {
-    return { accion: `darBajaCategoria:${idCategoria}` };
+    return repository.update(idCategoria, { estadoAuditoria: EstadoAuditoria.INACTIVO});
 }
