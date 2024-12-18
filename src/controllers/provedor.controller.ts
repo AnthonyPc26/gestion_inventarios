@@ -16,14 +16,25 @@ export const insertarProveedor = async (req: Request, res: Response) => {
 }
 
 export const listarProveedor = async (req: Request, res: Response) => {
-    const response = proveedorService.listarProveedor();
-    res.json(response);
+    try {
+        console.log('listarProveedor');
+        const proveedores: Proveedor[] = await proveedorService.listarProveedor();
+        res.json(BaseResponse.success(proveedores));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const obtenerProveedor = async (req: Request, res: Response) => {
-    const { idProveedor } = req.params;
-    const response = proveedorService.obtenerProveedor(Number(idProveedor));
-    res.json(response);
+    try {
+        const { idProveedor } = req.params;
+        const response = await proveedorService.obtenerProveedor(Number(idProveedor));
+        res.json(BaseResponse.success(response));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const actualizarProveedor = async (req: Request, res: Response) => {

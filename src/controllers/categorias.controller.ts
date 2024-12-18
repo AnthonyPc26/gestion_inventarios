@@ -16,14 +16,25 @@ export const insertarCategoria = async (req: Request, res: Response) => {
 }
 
 export const listarCategoria = async (req: Request, res: Response) => {
-    const response = await categoriaService.listarCategoria();
-    res.json(response);
+    try {
+        console.log('listarCategoria');
+        const categorias: Categoria[] = await categoriaService.listarCategoria();
+        res.json(BaseResponse.success(categorias));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const obtenerCategoria = async (req: Request, res: Response) => {
-    const { idCategoria } = req.params;
-    const response = await categoriaService.obtenerCategoria(Number(idCategoria));
-    res.json(response);
+    try {
+        const { idCategoria } = req.params;
+        const response = await categoriaService.obtenerCategoria(Number(idCategoria));
+        res.json(BaseResponse.success(response));
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(BaseResponse.error(error.message));
+    }
 }
 
 export const actualizarCategoria = async (req: Request, res: Response) => {
