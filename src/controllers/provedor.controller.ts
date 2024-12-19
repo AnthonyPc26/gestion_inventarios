@@ -14,6 +14,7 @@ export const insertarProveedor = async (req: Request, res: Response) => {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
+    
 }
 
 export const listarProveedor = async (req: Request, res: Response) => {

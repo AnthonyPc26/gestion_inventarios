@@ -56,6 +56,7 @@ export const actualizarCategoria = async (req: Request, res: Response) => {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
+    
 }
 
 export const darBajaCategoria = async (req: Request, res: Response) => {
