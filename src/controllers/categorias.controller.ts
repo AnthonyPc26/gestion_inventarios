@@ -6,12 +6,12 @@ import { message } from '../enums/message';
 
 export const insertarCategoria = async (req: Request, res: Response) => {
     try {
-        console.log('insertarCategoria')
-        console.log('req.body', req.body)
+        console.log('insertarCategoria');
         const categoria: Partial<Categoria> = req.body;
-        const newCategoria: Categoria = await categoriaService.insertarCategoria(categoria);
+        const newCategoria: Categoria = await categoriaService.insertarCategoria(categoria)
         res.json(BaseResponse.success(newCategoria, message.INSERTADO_OK));
     } catch (error) {
+        console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
 }
@@ -30,8 +30,12 @@ export const listarCategoria = async (req: Request, res: Response) => {
 export const obtenerCategoria = async (req: Request, res: Response) => {
     try {
         const { idCategoria } = req.params;
-        const response = await categoriaService.obtenerCategoria(Number(idCategoria));
-        res.json(BaseResponse.success(response));
+        const categoria: Categoria = await categoriaService.obtenerCategoria(Number(idCategoria));
+        if(!categoria) {
+            res.status(404).json(BaseResponse.error(message.NOT_FOUND,404));
+            return;
+        }
+        res.json(BaseResponse.success(categoria));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -41,23 +45,31 @@ export const obtenerCategoria = async (req: Request, res: Response) => {
 export const actualizarCategoria = async (req: Request, res: Response) => {
     try {
         const { idCategoria } = req.params;
-        const categoria = req.body;
-        const response = await categoriaService.actualizarCategoria(Number(idCategoria),categoria)
-        res.json(BaseResponse.success(response, message.ACTUALIZADO_OK));
+        const categoria: Partial<Categoria> = req.body;
+        if(!(await categoriaService.obtenerCategoria(Number(idCategoria)))){
+            res.status(404).json(BaseResponse.error(message.NOT_FOUND,404));
+            return;
+        }
+        const updateCategoria: Categoria = await categoriaService.actualizarCategoria(Number(idCategoria),categoria);
+        res.json(BaseResponse.success(updateCategoria, message.ACTUALIZADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
+    
 }
 
 export const darBajaCategoria = async (req: Request, res: Response) => {
     try {
         const { idCategoria } = req.params;
-        const response = await categoriaService.darBajaCategoria(Number(idCategoria));
-        res.json(BaseResponse.success(response, message.ELIMINADO_OK));
-        
+        if(!(await categoriaService.obtenerCategoria(Number(idCategoria)))){
+            res.status(404).json(BaseResponse.error(message.NOT_FOUND,404));
+            return;
+        }
+        await categoriaService.darBajaCategoria(Number(idCategoria));
+        res.json(BaseResponse.success(null,message.ELIMINADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
-};
+}
