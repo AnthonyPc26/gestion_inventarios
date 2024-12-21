@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { actualizarCategoria, insertarCategoria, listarCategoria, obtenerCategoria,  darBajaCategoria } from "../controllers/categorias.controller";
+import { actualizarCategoria, insertarCategoria, listarCategoria, obtenerCategoria,  darBajaCategoria } from "../controllers/categoria.controller";
 
 const router: Router = Router();
 

@@ -10,11 +10,15 @@ export const insertarProveedor = async (data: Partial<Proveedor>): Promise<Prove
 }
 
 export const listarProveedor = async (): Promise<Proveedor[]> => {
-    return await repository.find({where: { estadoAuditoria: EstadoAuditoria.ACTIVO }});
+    return await repository.find({
+        where: { estadoAuditoria: EstadoAuditoria.ACTIVO }
+    });
 }
 
 export const obtenerProveedor = async (idProveedor: number) => {
-    return await repository.findOne({where: {estadoAuditoria: EstadoAuditoria.ACTIVO,idProveedor}})
+    return await repository.findOne({
+        where: {estadoAuditoria: EstadoAuditoria.ACTIVO,idProveedor}
+    })
 }
 
 export const actualizarProveedor = async (idProveedor: number, data: Partial<Proveedor>) => {
