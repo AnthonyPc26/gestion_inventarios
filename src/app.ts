@@ -2,7 +2,10 @@ import express, { Application, Request, Response } from 'express';
 import morgan from 'morgan';
 import proveedorRouter from './routes/proveedor.route';
 import { AppDataSource } from './config/db.config';
-import categoriaRouter from './routes/categorias.route'; // Asegúrate de que la ruta sea correcta
+import categoriaRouter from './routes/categoria.route'; // Asegúrate de que la ruta sea correcta
+import rolesRouter from './routes/rol.route';
+import productoRouter from './routes/produto.route';
+import usuarioRouter from './routes/usuario.route';
 
 const app: Application = express();
 
@@ -10,6 +13,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use('/api/v1/proveedores',proveedorRouter);
 app.use('/api/v1/categorias', categoriaRouter);    // Ruta para categorías
+app.use('/api/v1/roles', rolesRouter);
+app.use('/api/v1/productos', productoRouter);
+app.use('/api/v1/usuarios',usuarioRouter);
 
 
 export const startServer = async () => {

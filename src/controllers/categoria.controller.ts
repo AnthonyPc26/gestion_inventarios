@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import * as categoriaService from '../services/categorias.service';
-import { Categoria } from '../entities/categorias';
+import * as categoriaService from '../services/categoria.service';
+import { Categoria } from '../entities/categoria';
 import { BaseResponse } from '../shared/base-response';
 import { message } from '../enums/message';
 
