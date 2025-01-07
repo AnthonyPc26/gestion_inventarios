@@ -3,18 +3,25 @@ import { BaseResponse } from '../shared/base-response';
 import { message } from '../enums/message';
 import { Producto } from '../entities/producto';
 import * as productoService from '../services/producto.service';
+import { insertarProductoSchema } from '../validators/producto.schema';
 
 export const insertarProducto = async (req: Request, res: Response) => {
     try {
         console.log('insertarProducto');
+        const { error } = insertarProductoSchema.validate(req.body); // Validación del esquema
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const producto: Partial<Producto> = req.body;
-        const newProducto: Producto = await productoService.insertarProducto(producto)
+        const newProducto: Producto = await productoService.insertarProducto(producto);
         res.json(BaseResponse.success(newProducto, message.INSERTADO_OK));
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
     }
-}
+};
+
 
 export const listarProducto = async (req: Request, res: Response) => {
     try {

@@ -12,7 +12,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/api/v1/proveedores',proveedorRouter);
-app.use('/api/v1/categorias', categoriaRouter);    // Ruta para categorías
+app.use('/api/v1/categorias', categoriaRouter);    
 app.use('/api/v1/roles', rolesRouter);
 app.use('/api/v1/productos', productoRouter);
 app.use('/api/v1/usuarios',usuarioRouter);
