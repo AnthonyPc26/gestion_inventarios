@@ -3,8 +3,6 @@ import { actualizarRol, darBajaRol, insertarRol, listarRol, obtenerRol } from ".
 
 const router: Router = Router();
 
-// Rutas para la entidad Roles
-
 router.post('/', insertarRol); 
 router.get('/', listarRol); 
 router.get('/:idRol', obtenerRol); 

@@ -3,10 +3,16 @@ import * as proveedorService from '../services/proveedor.service';
 import { Proveedor } from '../entities/proveedor';
 import { BaseResponse } from '../shared/base-response';
 import { message } from '../enums/message';
+import { actualizarProveedorSchema, insertarProveedorSchema } from '../validators/proveedor.schema';
 
 export const insertarProveedor = async (req: Request, res: Response) => {
     try {
         console.log('insertarProveedor');
+        const { error } = insertarProveedorSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const proveedor: Partial<Proveedor> = req.body;
         const newProveedor: Proveedor = await proveedorService.insertarProveedor(proveedor)
         res.json(BaseResponse.success(newProveedor, message.INSERTADO_OK));
@@ -21,7 +27,7 @@ export const listarProveedor = async (req: Request, res: Response) => {
     try {
         console.log('listarProveedor');
         const proveedores: Proveedor[] = await proveedorService.listarProveedor();
-        res.json(BaseResponse.success(proveedores));
+        res.json(BaseResponse.success(proveedores));    
     } catch (error) {
         console.error(error);
         res.status(500).json(BaseResponse.error(error.message));
@@ -46,6 +52,11 @@ export const obtenerProveedor = async (req: Request, res: Response) => {
 export const actualizarProveedor = async (req: Request, res: Response) => {
     try {
         const { idProveedor } = req.params;
+        const { error } = actualizarProveedorSchema.validate(req.body);
+        if(error){
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const proveedor: Partial<Proveedor> = req.body;
         if(!(await proveedorService.obtenerProveedor(Number(idProveedor)))){
             res.status(404).json(BaseResponse.error(message.NOT_FOUND,404));
