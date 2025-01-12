@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use('/api/v1/proveedores',proveedorRouter);
 app.use('/api/v1/categorias', categoriaRouter);
+app.use('/api/v1/categorias', categoriaRouter);    
 app.use('/api/v1/roles', rolesRouter);
 app.use('/api/v1/productos', productoRouter);
 app.use('/api/v1/usuarios',usuarioRouter);

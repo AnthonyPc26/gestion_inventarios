@@ -4,6 +4,7 @@ import { message } from '../enums/message';
 import { Producto } from '../entities/producto';
 import * as productoService from '../services/producto.service';
 import { actualizarProductoSchema, insertarProductoSchema } from '../validators/producto.schema';
+import { insertarProductoSchema } from '../validators/producto.schema';
 
 export const insertarProducto = async (req: Request, res: Response) => {
     try {
@@ -21,6 +22,7 @@ export const insertarProducto = async (req: Request, res: Response) => {
         res.status(500).json(BaseResponse.error(error.message));
     }
 };
+
 
 export const listarProducto = async (req: Request, res: Response) => {
     try {
