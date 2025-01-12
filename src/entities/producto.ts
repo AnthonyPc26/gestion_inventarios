@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { Proveedor } from "./proveedor";
 import { Categoria } from "./categoria";
-
+import { UbicacionProducto } from "./ubicacion-producto";
 
 @Entity('productos')
 export class Producto {
@@ -24,6 +24,9 @@ export class Producto {
     @ManyToOne(() => Categoria, (categoria) => categoria.productos)
     @JoinColumn({ name: 'id_categoria' })
     categoria: Categoria;
+
+    @OneToMany(() => UbicacionProducto, (ubicacionProducto) => ubicacionProducto.producto)
+    ubicacionesProducto: UbicacionProducto[];
 
     @Column({ name: 'imagen_url' })
     imagenUrl: string;
