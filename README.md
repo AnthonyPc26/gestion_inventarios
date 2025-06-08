@@ -10,7 +10,6 @@
 - **RAMOS CHAVEZ, JESUS EDMUNDO**  
 
 ---
-![Image Alt](https://github.com/AnthonyPc26/gestion_inventarios/blob/590c4b54358d1415c9561287187646b7cae9c0eb/FotoBD.jpg)
 ## **Objetivo del Proyecto:**
 
 El objetivo principal es **crear una plataforma que centralice la información de proveedores, categorías y almacenes**, facilitando la gestión de inventario y optimizando el flujo de productos.
