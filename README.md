@@ -1,51 +1,37 @@
-                                          # **SISTEMA GESTIÓN DE INVENTARIOS**
+# 🚀 API - Sistema de Gestión Backend
+
+Bienvenido al repositorio del **Backend** del sistema de gestión.  
+Este backend ha sido desarrollado para manejar todas las operaciones del sistema como registros, consultas, actualizaciones y eliminaciones de datos. Está diseñado para integrarse con el frontend y ofrecer una API RESTful robusta y eficiente.
 
 ---
 
-### **INTEGRANTES:**
+## 📘 Documentación Interactiva con Postman
 
-- **DIAZ CASTAÑEDA, JOSE MANUEL**  
-- **RAMIREZ CHACCHI, JORDY**  
-- **PACHAS CONTRERAS, ANTHONY MANUEL**  
-- **RAMOS CHAVEZ, JESUS EDMUNDO**  
+<table>
+  <tr>
+    <td width="100">
+      <img src="https://cdn.worldvectorlogo.com/logos/postman.svg" alt="Postman Logo" width="90"/>
+    </td>
+    <td>
+      <strong>🔗 Accede aquí a la documentación completa:</strong><br>
+      <a href="https://documenter.getpostman.com/view/36834033/2sB2x3nD4H" target="_blank">
+        https://documenter.getpostman.com/view/36834033/2sB2x3nD4H
+      </a>
+    </td>
+  </tr>
+</table>
 
----
-## **Objetivo del Proyecto:**
-
-El objetivo principal es **crear una plataforma que centralice la información de proveedores, categorías y almacenes**, facilitando la gestión de inventario y optimizando el flujo de productos.
-
----
-
-### **1. Control de Stock**  
-- Monitorear el nivel de inventario en tiempo real.  
-- Alertar sobre productos con bajo stock y prevenir desabastecimientos.
-
-### **2. Gestión de Proveedores y Productos**  
-- Organizar y administrar la información de los proveedores.  
-- Incluir datos de contacto, precios y plazos de entrega.
-
-### **3. Categorización de Productos**  
-- Clasificar los productos en categorías.  
-- Mejorar la organización y simplificar la búsqueda.
-
-### **4. Optimización del Almacenamiento**  
-- Optimizar el espacio de almacenamiento.  
-- Asignar ubicaciones adecuadas para cada producto.  
-- Minimizar el tiempo de búsqueda.
+> Toda la API está documentada, categorizada y lista para ser consumida con pruebas reales. 🧪
 
 ---
 
-## **Tecnología a Utilizar**
+## 🧰 Herramientas Utilizadas
 
-### **Node.js**  
-Node.js permite ejecutar **JavaScript del lado del servidor**, ofreciendo un entorno rápido y escalable para construir aplicaciones web y APIs.  
-Ideal para manejar múltiples solicitudes simultáneas de manera eficiente.
-
-### **TypeScript**  
-TypeScript es un lenguaje basado en JavaScript que añade **tipado estático y características avanzadas**, facilitando la escritura de código más seguro y mantenible.
+- ⚙️ **VisualCode / Ts, NodeJS **  
+- 🐘 **PostgreSQL**  
+- 📮 **Postman** para documentación y pruebas
 
 ---
 
-✨ **Proyecto desarrollado por un equipo comprometido en optimizar la gestión de inventarios.** ✨
-
+## 📂 Estructura del Proyecto (Resumen)
 
